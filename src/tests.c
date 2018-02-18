@@ -83,7 +83,7 @@ static struct ap_test_result all_tests(void)
         AP_TEST_RUN(test_functions[i]);
     }
 
-    struct ap_test_result return_value = { NULL, NULL };
+    struct ap_test_result return_value = { NULL, NULL, NULL };
     return return_value;
 }
 
