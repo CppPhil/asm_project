@@ -1,0 +1,30 @@
+dist: trusty
+sudo: false
+language: c
+
+notifications:
+  email    
+    recipients:
+      - 0f9234u9f0jw3@gmx.de
+    on_success: always
+    on_failure: always
+    
+addons:
+  apt:
+    sources: &apt_sources
+    
+compiler: gcc
+os: linux
+
+matrix:
+  include:
+    # GCC 5
+    compiler: gcc
+    addons: &gcc5
+      apt:
+        packages: ["gcc-5", "libc6-dbg", "linux-libc-dev", "binutils" ]
+        sources: *apt_sources
+script:
+  - make
+  - ./application
+
