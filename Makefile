@@ -1,7 +1,7 @@
 CC      := gcc-5
 AS      := as
 
-CFLAGS  := -std=c99 -m64 -Wall -Werror
+CFLAGS  := -std=c99 -m64 -Werror -Wall -Wextra -Wlogical-op -Wjump-misses-init -Wshadow -Wformat=2
 ASFLAGS := -march=generic64
 
 all: main.o eprintf.o tests.o memchr_asm.o memset_asm.o memcpy_asm.o
