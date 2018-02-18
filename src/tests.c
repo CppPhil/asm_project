@@ -3,6 +3,7 @@
 #include "../include/eprintf.h" // ap_eprintf
 #include "../include/memchr_asm.h" // memchr_asm
 #include "../include/memset_asm.h" // memset_asm
+#include "../include/memcpy_asm.h" // memcpy_asm
 #include <stdbool.h> // bool
 #include <stddef.h> // size_t, NULL
 
@@ -52,9 +53,28 @@ AP_TEST_CASE(memset_asm_test)
     }
 AP_TEST_CASE_END
 
+AP_TEST_CASE(memcpy_asm_test)
+    enum 
+    {
+        array_size = 5
+    };
+
+    int ary1[array_size] = { 1, 2, 3, 4,  5 };
+    int ary2[array_size] = { 6, 7, 8, 9, 10 };
+
+    void *ret_val = memcpy_asm(ary1, ary2, sizeof(ary1));
+
+    AP_TEST_ASSERT(ret_val == ((void *)ary1));
+
+    for (int i = 0; i < array_size; ++i) {
+        AP_TEST_ASSERT(ary1[i] == ary2[i]);
+    }
+AP_TEST_CASE_END
+
 static ap_test_function test_functions[] = {
     &memchr_asm_test,
-    &memset_asm_test
+    &memset_asm_test,
+    &memcpy_asm_test
 };
 
 static struct ap_test_result all_tests(void)
