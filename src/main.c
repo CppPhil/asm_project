@@ -2,7 +2,7 @@
 #include "../include/boolalpha.h" // AP_BOOLALPHA
 #include "../include/tests.h" // ap_run_all_tests
 #include <stdbool.h> // bool
-#include <stdlib.h> // EXIT_SUCCESS
+#include <stdlib.h> // EXIT_SUCCESS, EXIT_FAILURE
 #include <stdio.h> // printf
 
 int main(int argc, char *argv[])
@@ -14,5 +14,9 @@ int main(int argc, char *argv[])
     
     printf("Test run result: %s\n", AP_BOOLALPHA(ret_val));
 
-    return EXIT_SUCCESS;
+    if (ret_val) {
+        return EXIT_SUCCESS;
+    } 
+
+    return EXIT_FAILURE;
 }
