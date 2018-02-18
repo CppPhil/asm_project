@@ -2,6 +2,7 @@
 #include "../include/count_of.h" // AP_COUNT_OF
 #include "../include/eprintf.h" // ap_eprintf
 #include "../include/memchr_asm.h" // memchr_asm
+#include "../include/memset_asm.h" // memset_asm
 #include <stdbool.h> // bool
 #include <stddef.h> // size_t, NULL
 
@@ -27,8 +28,33 @@ AP_TEST_CASE(memchr_asm_test)
     AP_TEST_ASSERT(*p == '\0');   
 AP_TEST_CASE_END
 
+AP_TEST_CASE(memset_asm_test)
+    enum
+    {
+        array_size = 10
+    };
+
+    unsigned char array[array_size] = { '\0' };
+    void *dest = array;
+
+    void *res = memset_asm(dest, 0xAB, array_size);
+    AP_TEST_ASSERT(res == dest);
+
+    for (int i = 0; i < array_size; ++i) {
+        AP_TEST_ASSERT(array[i] == 0xAB);
+    }
+
+    res = memset_asm(dest, 0, array_size);
+    AP_TEST_ASSERT(res == dest);
+
+    for (int i = 0; i < array_size; ++i) {
+        AP_TEST_ASSERT(array[i] == 0);
+    }
+AP_TEST_CASE_END
+
 static ap_test_function test_functions[] = {
-    &memchr_asm_test
+    &memchr_asm_test,
+    &memset_asm_test
 };
 
 static struct ap_test_result all_tests(void)
