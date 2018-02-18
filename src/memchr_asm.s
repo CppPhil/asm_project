@@ -27,4 +27,3 @@ found:
 not_found:
     xor rax, rax              # zero out the output register
     ret                       # return
-
