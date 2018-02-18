@@ -90,3 +90,7 @@ dkms.conf
 
 ### generated documentation ###
 doc
+
+### Visual Studio Code files ###
+.vscode/
+

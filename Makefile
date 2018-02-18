@@ -9,5 +9,5 @@ tests.o: ./src/tests.c
 memchr_asm.o: ./src/memchr_asm.s
 	as -march=generic64 ./src/memchr_asm.s -o memchr_asm.o
 clean: 
-	rm ./*.o
-	rm ./application
+	-rm ./*.o
+	-rm ./application
