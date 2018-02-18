@@ -1,0 +1,9 @@
+#ifndef INCG_AP_STRINGIFY_H
+#define INCG_AP_STRINGIFY_H
+
+#define AP_STRINGIFY_DETAIL(x) #x
+
+#define AP_STRINGIFY(x) AP_STRINGIFY_DETAIL(x)
+
+#endif // INCG_AP_STRINGIFY_H
+

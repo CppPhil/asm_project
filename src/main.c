@@ -1,15 +1,18 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include "../include/memchr_asm.h"
+#include "../include/unused.h" // AP_UNUSED
+#include "../include/boolalpha.h" // AP_BOOLALPHA
+#include "../include/tests.h" // ap_run_all_tests
+#include <stdbool.h> // bool
+#include <stdlib.h> // EXIT_SUCCESS
+#include <stdio.h> // printf
 
-int main(void)
+int main(int argc, char *argv[])
 {
-    char a[] = "text";
+    AP_UNUSED(argc);
+    AP_UNUSED(argv);
     
-    const char *p = (const char *)memchr_asm(a, 'x', sizeof(a));
-    if (p != NULL) {
-        printf("%c\n", *p);
-    }
+    const bool ret_val = ap_run_all_tests();
+    
+    printf("Test run result: %s\n", AP_BOOLALPHA(ret_val));
 
     return EXIT_SUCCESS;
 }
