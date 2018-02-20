@@ -9,8 +9,7 @@ strlen_asm:
     xor rax, rax            # zero out the output register
 
 loop:
-    mov sil, BYTE PTR [rdi] # read the current char
-    test sil, sil           # check if it's '\0'
+    cmp BYTE PTR [rdi], 0   # check if the current char is '\0'
     je end                  # if it is -> abort
     inc rdi                 # increment the pointer
     inc rax                 # increment the count
