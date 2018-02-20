@@ -88,17 +88,31 @@ AP_TEST_CASE(strlen_asm_test)
 AP_TEST_CASE_END
 
 AP_TEST_CASE(memfrob_asm_test)
-    static const unsigned char expected[] = "\xF4\x87\xEA\xF4\x2A";
-
-    unsigned char ary[] = "\xDE\xAD\xC0\xDE";
-    const size_t ary_byte_size = sizeof(ary);
+    enum
+    {
+        ary_byte_size = 5
+    };
+    
+    static const unsigned char bytes[]    = "\xDE\xAD\xC0\xDE";;
+    static const unsigned char expected[] = {
+        '\xF4', '\x87', '\xEA', '\xF4', '\x2A'
+    };
+    
+    unsigned char ary[ary_byte_size];
+    memcpy_asm(ary, bytes, ary_byte_size);    
 
     void *ret_val = memfrob_asm(ary, ary_byte_size);
-
     AP_TEST_ASSERT(ret_val == ary);
 
     for (size_t i = 0U; i < ary_byte_size; ++i) {
         AP_TEST_ASSERT(ary[i] == expected[i]);
+    }
+
+    ret_val = memfrob_asm(ary, ary_byte_size);
+    AP_TEST_ASSERT(ret_val == ary);
+
+    for (size_t i = 0U; i < ary_byte_size; ++i) {
+        AP_TEST_ASSERT(ary[i] == bytes[i]);
     }
 AP_TEST_CASE_END
 
