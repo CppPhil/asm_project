@@ -4,6 +4,7 @@
 #include "../include/memchr_asm.h" // memchr_asm
 #include "../include/memset_asm.h" // memset_asm
 #include "../include/memcpy_asm.h" // memcpy_asm
+#include "../include/strlen_asm.h" // strlen_asm
 #include <stdbool.h> // bool
 #include <stddef.h> // size_t, NULL
 
@@ -71,10 +72,25 @@ AP_TEST_CASE(memcpy_asm_test)
     }
 AP_TEST_CASE_END
 
+AP_TEST_CASE(strlen_asm_test)
+    static const char str1[] = "Text";
+    static const size_t str1ExpectedLen = sizeof(str1) - 1U;
+
+    static const char str2[] = "";
+    static const size_t str2ExpectedLen = sizeof(str2) - 1U;
+
+    size_t ret_val = (size_t)strlen_asm(str1);
+    AP_TEST_ASSERT(ret_val == str1ExpectedLen);
+
+    ret_val = (size_t)strlen_asm(str2);
+    AP_TEST_ASSERT(ret_val == str2ExpectedLen);
+AP_TEST_CASE_END
+
 static ap_test_function test_functions[] = {
     &memchr_asm_test,
     &memset_asm_test,
-    &memcpy_asm_test
+    &memcpy_asm_test,
+    &strlen_asm_test
 };
 
 static struct ap_test_result all_tests(void)
