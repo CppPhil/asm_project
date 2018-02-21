@@ -6,6 +6,7 @@
 #include "../include/memcpy_asm.h" // memcpy_asm
 #include "../include/strlen_asm.h" // strlen_asm
 #include "../include/memfrob_asm.h" // memfrob_asm
+#include "../include/memcmp_asm.h" // memcmp_asm
 #include <stdbool.h> // bool
 #include <stddef.h> // size_t, NULL
 
@@ -116,12 +117,25 @@ AP_TEST_CASE(memfrob_asm_test)
     }
 AP_TEST_CASE_END
 
+AP_TEST_CASE(memcmp_asm_test)
+    static const unsigned char a1[] = { '\xAB', '\xCD' };
+    static const unsigned char a2[] = { '\xAB', '\xCC' };
+    static const size_t byte_count = 2U;
+
+    AP_TEST_ASSERT(memcmp_asm(a1, a2, 0U) == 0);
+    AP_TEST_ASSERT(memcmp_asm(a1, a2, byte_count) > 0);
+    AP_TEST_ASSERT(memcmp_asm(a2, a1, byte_count) < 0);
+    AP_TEST_ASSERT(memcmp_asm(a1, a1, byte_count) == 0);
+    AP_TEST_ASSERT(memcmp_asm(a2, a2, byte_count) == 0);
+AP_TEST_CASE_END
+
 static ap_test_function test_functions[] = {
     &memchr_asm_test,
     &memset_asm_test,
     &memcpy_asm_test,
     &strlen_asm_test,
-    &memfrob_asm_test
+    &memfrob_asm_test,
+    &memcmp_asm_test
 };
 
 static struct ap_test_result all_tests(void)
