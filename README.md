@@ -1,5 +1,8 @@
 # asm_project
 
+## Information
+This small project implements some commonly used C functions in x64 Assembly just for the fun of it.  
+
 ## Prerequisites
 - GNU/Linux based operating system  
 - gcc5  
@@ -10,7 +13,7 @@
 If you don't already have GAS installed you can install it by running `sudo apt-get install binutils -y`  
 
 ## Building
-To build the application enter`make`  
+To build the application enter `make`  
 
 ## Cleaning
 To clean the build directory enter `make clean`  
@@ -25,5 +28,5 @@ To run the application after having built it enter `./application`
 In order to generate the documentation run `doxygen ./Doxyfile`  
 
 ## Viewing the documenation
-To view the documentation open the ./doc/html/index.html file in a webbrowser.
+To view the documentation open the ./doc/html/index.html file in a webbrowser.  
 If using Mozilla Firefox run `firefox  ./doc/html/index.html &`  
