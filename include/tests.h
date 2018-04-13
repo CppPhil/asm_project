@@ -32,7 +32,7 @@ struct ap_test_result
     do \
     { \
         struct ap_test_result ret = { NULL, NULL, NULL }; \
-        ret.test_fun = __FUNCTION__; \
+        ret.test_fun = __func__; \
         ret.line = AP_STRINGIFY(__LINE__); \
         if (!(test)) \
         { \

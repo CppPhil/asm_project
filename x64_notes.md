@@ -35,7 +35,7 @@ If the values of these registers shall be preserved then the caller is responsib
 + r11  
 
 ### stable registers (callee saved registers)
-These registers must be restored to their origininal values when a function implemented in x64 Assembly returns.  
+These registers must be restored to their original values when a function implemented in x64 Assembly returns.  
 The callee is responsible for saving and restoring them.  
 
 + rbx  
